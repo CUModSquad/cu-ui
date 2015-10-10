@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "cu-build-tools": "^0.1.8",
-    "gulp": "^3.9.0"
+    "gulp": "^3.9.0",
+    "extend": "^3.0.0"
   }
 }

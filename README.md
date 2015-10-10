@@ -3,7 +3,9 @@ cu-ui
 
 > Camelot Unchained UI 2.0
 
-This repository contains all of the UI widgets in [Camelot Unchained](http://camelotunchained.com/v2/). This is the entire front-end UI for the game, not a partial stripped-down version. This is what we're going to ship and we will take pull requests from the community seriously.
+This repository contains all of the UI widgets in [Camelot Unchained](http://camelotunchained.com/v2/).
+This is the entire front-end UI for the game, not a partial stripped-down version.
+This is what we're going to ship and we will take pull requests from the community seriously.
 
 ---
 
@@ -45,8 +47,7 @@ This will build all the modules/libraries into the `publish` directory ready for
 
 #### `gulp server`
 
-This will start a server to preview all the modules/libraries. It will also inject a fake `cuAPI` into all pages,
-so things don't break outside of the client.
+This will start a server to preview all the modules/libraries. It will also inject scripts declared in the build config.
 
 #### `gulp %MODULE%`
 
@@ -70,6 +71,25 @@ Or if you want to target a specific channel you can add the channel number to th
 
 ```
 --user-ui 10
+```
+
+Overriding `cu-build.config.js`
+-----------------------------
+
+You can override configuration in `cu-build.config.js` by creating a file called
+`user-cu-build.config.js` and exporting override configuration.
+
+Example:
+
+```js
+// user-cu-build.config.js
+
+module.exports = {
+  publish: {
+    dest: __dirname + '/my-custom-publish-directory',
+  }
+};
+
 ```
 
 ---

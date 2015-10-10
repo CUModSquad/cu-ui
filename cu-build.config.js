@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-module.exports = {
+var config = {
   type: 'multi',
   path: __dirname,
   name: 'cu-ui',
@@ -29,3 +29,14 @@ module.exports = {
     'cu-stores': 'https://github.com/CUModSquad/cu-stores.git#master',
   }
 };
+
+// load user config and merge it with default config if it exists
+var extend = require('extend');
+var fs = require('fs');
+var userConfig = {};
+if (fs.existsSync(__dirname + '/user-cu-build.config.js')) {
+  userConfig = require(__dirname + '/user-cu-build.config.js');
+}
+config = extend(true, config, userConfig);
+
+module.exports = config;
