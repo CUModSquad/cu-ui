@@ -7,46 +7,47 @@
 /// <reference path="../tsd/tsd.d.ts" />
 
 import * as React from 'react';
-import * as Reflux from 'reflux';
+import { Player } from 'cu-core';
 import events from 'cu-events';
 import { EnemyTargetStore } from 'cu-stores';
-import { UnitFrame } from 'cu-components';
+import { Wounds } from 'cu-components';
 
-const enemyTarget: any = EnemyTargetStore.create();
+const character : any = EnemyTargetStore.create();
 
-const EnemyTarget = React.createClass({
+class WoundsUIState {
+  public character: any;
+  constructor() {
+    this.character = null;
+  }
+}
+class WoundsUIProps {}
 
-  // Hook store up to component.  Each time character data is changed,
-  // our state is updated, triggering a render
-  mixins: [
-    Reflux.connect(enemyTarget.store, 'enemyTarget')
-  ],
-
-  // Provide an initial state (TODO: is there a better way to do this?)
-  getInitialState: function() {
-    return { enemyTarget: enemyTarget.store.info };
-  },
-
-  componentDidMount() {
-    // Start listening for character events
-    // FIXME: broken, currently no-op
-    enemyTarget.actions.start();
-  },
-
-  // Render the unit frame using character data
-  render: function() {
-    var state = this.state, enemyTarget = state.enemyTarget;
-    return (<UnitFrame
-      name={enemyTarget.name} race={enemyTarget.race}
-      health={enemyTarget.health} maxHealth={enemyTarget.maxHealth}
-      stamina={enemyTarget.stamina} maxStamina={enemyTarget.maxStamina}
-      injuries={enemyTarget.injuries}
-      />
+class WoundsUI extends React.Component<WoundsUIProps, WoundsUIState> {
+  constructor(props: WoundsUIProps) {
+    super(props);
+  }
+  componentWillMount() {
+    this.oncharacter(character.store.info);
+  }
+  oncharacter(character: Player) {
+    this.setState({ character: character });
+  }
+  render() {
+    const character = this.state.character;
+    return (
+      <div>
+        <Wounds injuries={character.injuries}
+          health={character.health} healthMax={character.maxHealth}
+          stamina={character.stamina} staminaMax={character.maxStamina}
+          //panic={character.panic} panicMax={character.maxPanic}
+          //temp={character.temp} tempMax={character.maxTemp}
+          />
+      </div>
     );
   }
-});
+}
 
-events.on("init", function() {
-  enemyTarget.actions.start();  // HACK for cuAPI bug
-  React.render(<EnemyTarget/>, document.getElementById("cse-ui-enemytarget"));
+events.on('init', () => {
+  character.actions.start();
+  React.render(<WoundsUI/>, document.getElementById("cse-ui-wounds"));
 });

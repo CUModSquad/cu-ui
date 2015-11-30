@@ -1,5 +1,6 @@
 .idea
-.suo
+*.suo
+*.csproj
 npm-debug.log
 .sublime-gulp.cache
 /node_modules
