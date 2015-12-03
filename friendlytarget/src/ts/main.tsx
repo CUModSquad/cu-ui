@@ -26,6 +26,7 @@ class WoundsUIProps {}
 class WoundsUI extends React.Component<WoundsUIProps, WoundsUIState> {
   constructor(props: WoundsUIProps) {
     super(props);
+    character.store.listen(this.oncharacter.bind(this));
   }
   componentWillMount() {
     this.oncharacter(character.store.info);

@@ -7,6 +7,7 @@
 /// <reference path="../../tsd/tsd.d.ts" />
 
 import * as React from 'react';
+import { Injury } from 'cu-core';
 import { Part } from './Part';
 import { Label } from './Label';
 import { WoundColors } from '../classes/WoundColors';
@@ -48,7 +49,7 @@ class InjuryMap {
   }
   getInjury(i : number) : any {
     const injury : any = this.map[i];
-    return injury ? injury : { part: i, health: 25, maxHealth: 25, wounds: 0 };
+    return injury ? injury : new Injury(); //injury : { part: i, health: 25, maxHealth: 25, wounds: 0 };
   }
 }
 

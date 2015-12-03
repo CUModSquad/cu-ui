@@ -7,6 +7,7 @@
 /// <reference path="../tsd/tsd.d.ts" />
 
 import * as React from 'react';
+import * as cuAPI from 'cu-core';
 import { Player } from 'cu-core';
 import events from 'cu-events';
 import { EnemyTargetStore } from 'cu-stores';
@@ -25,6 +26,7 @@ class WoundsUIProps {}
 class WoundsUI extends React.Component<WoundsUIProps, WoundsUIState> {
   constructor(props: WoundsUIProps) {
     super(props);
+    character.store.listen(this.oncharacter.bind(this));
   }
   componentWillMount() {
     this.oncharacter(character.store.info);
