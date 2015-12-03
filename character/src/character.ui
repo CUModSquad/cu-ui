@@ -2,10 +2,10 @@
   "name": "character",
   "mainFile": "index.html",
   "rect": {
-    "left": 0,
-    "top": 0,
-    "right": 245,
-    "bottom": 125
+    "left": 638,
+    "top": 600,
+    "right": 810,
+    "bottom": 900
   },
   "handlesAbilities": false,
   "handlesAnnouncements": false,

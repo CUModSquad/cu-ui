@@ -28,9 +28,21 @@
     "./src/**/*.tsx"
   ],
   "files": [
-    "src/tsd/react/react.d.ts",
-    "src/tsd/tsd.d.ts",
-    "src/ts/main.tsx"
+    "./src/tsd/react/react.d.ts",
+    "./src/tsd/tsd.d.ts",
+    "./src/ts/classes/WoundColors.tsx",
+    "./src/ts/components/Buffs.tsx",
+    "./src/ts/components/Doll.tsx",
+    "./src/ts/components/Label.tsx",
+    "./src/ts/components/Part.tsx",
+    "./src/ts/components/Stat.tsx",
+    "./src/ts/components/Stats.tsx",
+    "./src/ts/components/Svg.tsx",
+    "./src/ts/main.tsx",
+    "./src/ts/resources/Shapes.tsx"
   ],
-  "exclude": []
+  "exclude": [],
+  "atom": {
+    "rewriteTsconfig": true
+  }
 }

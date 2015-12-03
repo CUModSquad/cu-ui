@@ -2,10 +2,10 @@
   "name": "enemytarget",
   "mainFile": "index.html",
   "rect": {
-    "left": 300,
-    "top": 9,
-    "right": 478,
-    "bottom": 168
+    "left": 456,
+    "top": 630,
+    "right": 628,
+    "bottom": 930
   },
   "handlesAbilities": false,
   "handlesAnnouncements": false,

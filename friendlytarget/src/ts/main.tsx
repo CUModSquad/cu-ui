@@ -4,48 +4,52 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
- /// <reference path="../tsd/tsd.d.ts" />
+/// <reference path="../tsd/tsd.d.ts" />
+
 import * as React from 'react';
-import * as Reflux from 'reflux';
+import * as cuAPI from 'cu-core';
+import { Player } from 'cu-core';
 import events from 'cu-events';
 import { FriendlyTargetStore } from 'cu-stores';
-import { UnitFrame } from 'cu-components';
+import { Wounds } from 'cu-components';
 
-const friendlyTarget : any = FriendlyTargetStore.create();
+const character : any = FriendlyTargetStore.create();
 
-const FriendlyTarget = React.createClass({
-
-  // Hook store up to component.  Each time FriendlyTarget data is changed,
-  // our state is updated, triggering a render
-  mixins: [
-    Reflux.connect(friendlyTarget.store, 'friendlyTarget')
-  ],
-
-  // Provide an initial state (TODO: is there a better way to do this?)
-  getInitialState: function() {
-    return { friendlyTarget: friendlyTarget.store.info };
-  },
-
-  componentDidMount() {
-    // Start listening for FriendlyTarget events
-    // FIXME: broken, currently no-op
-    friendlyTarget.actions.start();
-  },
-
-  // Render the unit frame using FriendlyTarget data
-  render: function() {
-    var state = this.state, friendlyTarget = state.friendlyTarget;
-    return (<UnitFrame
-        name={friendlyTarget.name} race={friendlyTarget.race}
-        health={friendlyTarget.health} maxHealth={friendlyTarget.maxHealth}
-        stamina={friendlyTarget.stamina} maxStamina={friendlyTarget.maxStamina}
-        injuries={friendlyTarget.injuries}
-        />
-      );
+class WoundsUIState {
+  public character: any;
+  constructor() {
+    this.character = null;
   }
-});
+}
+class WoundsUIProps {}
 
-events.on("init", function() {
-  friendlyTarget.actions.start();     // HACK for cuAPI bug
-  React.render(<FriendlyTarget/>, document.getElementById("cse-ui-friendlytarget"));
+class WoundsUI extends React.Component<WoundsUIProps, WoundsUIState> {
+  constructor(props: WoundsUIProps) {
+    super(props);
+    character.store.listen(this.oncharacter.bind(this));
+  }
+  componentWillMount() {
+    this.oncharacter(character.store.info);
+  }
+  oncharacter(character: Player) {
+    this.setState({ character: character });
+  }
+  render() {
+    const character = this.state.character;
+    return (
+      <div>
+        <Wounds injuries={character.injuries}
+          health={character.health} healthMax={character.maxHealth}
+          stamina={character.stamina} staminaMax={character.maxStamina}
+          //panic={character.panic} panicMax={character.maxPanic}
+          //temp={character.temp} tempMax={character.maxTemp}
+          />
+      </div>
+    );
+  }
+}
+
+events.on('init', () => {
+  character.actions.start();
+  React.render(<WoundsUI/>, document.getElementById("cse-ui-wounds"));
 });

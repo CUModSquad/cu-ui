@@ -4,136 +4,150 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-/* Compiles to: css/main.css */
-
-html, body {
-  margin: 0;
-  padding: 0;
+body {
   overflow: hidden;
+  cursor: default;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
 }
 
-/* Target ONLY cse-ui-character contained elements */
+#cse-ui-wounds {
 
-#cse-ui-character {
+  position: relative;
+  width: 150px;
+  background-color: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.6);
+  padding: 10px;
+  padding-bottom: 5px;
 
-  /*
-   * These styles overide the cbase unitframe.css styles defined by
-   * ../cu-lib/views/unitframe.css.  For the most part this means
-   * different position and sizes of the bars, and different artwork
-   * for the frame and bars.  And some different colours.  The fonts
-   * and other stuff are inherited from unitframe.css
-  */
-
-  #unitframe {
-    background: transparent url('../images/bg.png') no-repeat top left;
-    width: 217px;
-    height: 76px;
-    visibility: visible;            /* always visible! */
+  /* Paper Doll Styles */
+  .doll {
+    width: 150px;
+    height: 115px;
+    position: relative;
+    .part {
+      border: 0;
+      position: absolute;
+      top: 0;
+      margin-left: 50%;
+      left: -41px;
+      width: 82px;
+      height: 98px;
+      background: transparent;
+      opacity: 0.85;
+    }
+    .label {
+      position: absolute;
+      z-index: 1;
+      height: 12px;
+      width: 48px;
+      font-size: 10px;
+      text-align: center;
+    }
+    .label.part-0 {
+      top: -7px;
+      margin-left: 50%;
+      left: -24px;
+    }
+    .label.part-1 {
+      top: 10px;
+      margin-left: 50%;
+      left: -60px;
+    }
+    .label.part-2 {
+      top: 10px;
+      margin-left: 50%;
+      left: 12px;
+    }
+    .label.part-3 {
+      top: 35px;
+      margin-left: 50%;
+      left: -55px;
+    }
+    .label.part-4 {
+      top: 90px;
+      margin-left: 50%;
+      left: -50px;
+    }
+    .label.part-5 {
+      top: 90px;
+      margin-left: 50%;
+      left: 2px;
+    }
   }
 
-  #unitframe:after {
-    top: 0;
-    content: url('../images/frame.png');
-    z-index: auto;
-  }
-
-  #portrait {
+  /* Buff/Debuff styles */
+  .buffs {
     position: absolute;
-    top: 8px;
-    left: 2px;
-    width: 59px;
-    height: 59px;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: top left;
+    height: 85px;
+    top: 40px;
   }
 
-  #portrait.hamadryad   {
-    background: transparent url('../images/portraits/hamadryad.jpg') no-repeat top left;
-  }
-  #portrait.luchorpan   {
-    background: transparent url('../images/portraits/luchorpan.jpg') no-repeat top left;
-  }
-  #portrait.firbog      {
-    background: transparent url('../images/portraits/firbog.jpg') no-repeat top left;
-  }
-  #portrait.valkyrie    {
-    background: transparent url('../images/portraits/valkyrie.jpg') no-repeat top left;
-  }
-  #portrait.helbound    {
-    background: transparent url('../images/portraits/helbound.jpg') no-repeat top left;
-  }
-  #portrait.frostgiant  {
-    background: transparent url('../images/portraits/frostgiant.jpg') no-repeat top left;
-  }
-  #portrait.strm        {
-    background: transparent url('../images/portraits/strm.jpg') no-repeat top left;
-  }
-  #portrait.caitsith    {
-    background: transparent url('../images/portraits/caitsith.jpg') no-repeat top left;
-  }
-  #portrait.golem       {
-    background: transparent url('../images/portraits/golem.jpg') no-repeat top left;
-  }
-  #portrait.stormridert {
-    background: transparent url('../images/portraits/stormridert.jpg') no-repeat top left;
-  }
-  #portrait.stormridera {
-    background: transparent url('../images/portraits/stormridera.jpg') no-repeat top left;
-  }
-  #portrait.stormriderv {
-    background: transparent url('../images/portraits/stormriderv.jpg') no-repeat top left;
-  }
-  #portrait.humanmalev  {
-    background: transparent url('../images/character/portraits/humanmalev.jpg') no-repeat top left;
-  }
-  #portrait.humanmalea  {
-    background: transparent url('../images/character/portraits/humanmalea.jpg') no-repeat top left;
-  }
-  #portrait.humanmalet  {
-    background: transparent url('../images/character/portraits/humanmalet.jpg') no-repeat top left;
+  .buffs .icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin-bottom: 4px;
   }
 
-  #name {
-    top: 8px;
-    left: 61px;
-    width: 165px;
-    height: 21px;
-    line-height: 21px;
-    padding-left: 5px;
-    color: #efefef;
+  .buffs.boon {
+    left: 10px;
+  }
+  .buffs.bane {
+    right: 10px;
   }
 
-  #health-bar {
-    top: 30px;
-    left: 61px;
-    height: 26px;
-    background: transparent url('../images/health-bar.png') no-repeat top left;
-  }
+  /* Statistics Styles */
+  .stats {
+    width: 150px;
+    opacity: 0.85;
 
-  #health-text {
-    top: 30px;
-    left: 61px;
-    height: 26px;
-    line-height: 26px;
-    color: #fff;
-  }
+    .stat {
+      position: relative;
+      height: 16px;
 
-  #stamina-bar {
-    top: 56px;
-    left: 61px;
-    height: 11px;
-    background: transparent url('../images/stamina-bar.png') no-repeat top left;
-  }
+      label {
+        position: absolute;
+        display: block;
+        width: 30%;
+        font-size: 10px;
+        height: 10px;
+        margin-top: 2px;
+        font-weight: bold;
+      }
+      .bar, .fill {
+        position: absolute;
+        height: 6px;
+      }
+      .bar {
+        left: 30%;
+        width: 70%;
+        margin-top: 5px;
+      }
+    }
 
-  #stamina-text {
-    top: 56px;
-    left: 61px;
-  }
-
-  #effects {
-    top: 72px;
-    left: 15px;
-    width: 224px;
+    .blood {
+      label { color: #fe1f16; }
+      .bar { background-color: #400000; }
+      .fill { background-color: #fe1f16; }
+    }
+    .stamina {
+      label { color: #f6ca06; }
+      .bar { background-color: #3d2b00; }
+      .fill { background-color: #f6ca06; }
+    }
+    .panic {
+      label { color: #fd6000; }
+      .bar { background-color: #411900; }
+      .fill { background-color: #fd6000; }
+    }
+    .temp {
+      label { color: white; }
+      .bar { background-color: #fe1f16; }
+      .fill { background-color: #12a2ff; }
+    }
   }
 }
