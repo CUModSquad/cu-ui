@@ -1,0 +1,36 @@
+{
+  "name": "cu-ui-errormessages",
+  "version": "0.1.0",
+  "description": "Camelot Unchained UI - errormessages",
+  "license": "MPL-2.0",
+  "main": "src/ts/main.tsx",
+  "private": true,
+  "contributors": [
+    "Grimmlet"
+  ],
+  "keywords": [
+    "Camelot",
+    "Unchained",
+    "cu",
+    "cu-ui"
+  ],
+  "files": [
+    "lib/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/csegames/cu-ui.git"
+  },
+  "dependencies": {
+    "cu-core": "^0.1.3",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "cu-build-tools": "^0.1.8"
+  }
+}
