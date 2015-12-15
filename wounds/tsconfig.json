@@ -27,10 +27,9 @@
     "./src/**/*.ts",
     "./src/**/*.tsx"
   ],
-  "files": [
-    "src/tsd/react/react.d.ts",
-    "src/tsd/tsd.d.ts",
-    "src/ts/main.tsx"
-  ],
-  "exclude": []
+  "files": [],
+  "exclude": [],
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }
