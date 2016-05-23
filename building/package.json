@@ -45,14 +45,14 @@
     "copy": "npm run copy:third-party && npm run copy:misc",
     "copy:nix": "npm run copy:third-party:nix && npm run copy:misc:nix",
     "babel": "babel tmp -d tmpp",
-    "browserify": "browserify tmpp/main.js -o dist/js/%npm_package_config_name%.js",
+    "browserify": "browserify tmpp/index.js -o dist/js/%npm_package_config_name%.js",
     "prebrowserify": "mkdirp dist/js",
-    "build:sass": "node-sass src/sass -o dist/css --importer node_modules/camelot-unchained/lib/third-party/sass-importer/sass-npm-importer.js",
+    "build:sass": "node-sass src/index.scss -o dist/css --importer node_modules/camelot-unchained/lib/third-party/sass-importer/sass-npm-importer.js",
     "build": "tsc && npm run build:sass && npm run copy -s && npm run babel && npm run browserify && npm run clean:tmp -s && npm run clean:tmpp -s",
     "prebuild": "npm run clean -s",
     "build:nix": "tsc && npm run build:sass && npm run copy:nix -s && npm run babel && npm run browserify && npm run clean:dist && npm run clean:tmp -s && npm run clean:tmpp -s",
     "prebuild:nix": "npm run clean -s",
-    "serve": "http-server -p 9000 dist/",
+    "serve": "http-server -p 9001 dist/",
     "clean:hatchery": "(rmdir /s /q %localappdata%/CSE/CamelotUnchained/4/INTERFACE/%npm_package_config_name%) ^& exit 0",
     "copy:hatchery": "(robocopy dist\\ %localappdata%/CSE/CamelotUnchained/4/INTERFACE/%npm_package_config_name%\\ /s) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
     "build:hatchery": "npm run build && npm run clean:hatchery && npm run copy:hatchery",
@@ -65,8 +65,12 @@
   },
   "dependencies": {
     "camelot-unchained": "latest",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "es6-promise": "^3.2.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",

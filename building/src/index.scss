@@ -4,13 +4,12 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-$cu-styles-root: '../../../interface-lib/camelot-unchained/styles/';
-@import "../../node_modules/camelot-unchained/lib/index.scss";
-
 html, body {
   overflow: hidden;
   margin: 0;
   padding: 0;
+  background-image: url('../images/cube-bg.jpg');
+  background-size: cover;
 }
 
 #building-button {
@@ -30,3 +29,13 @@ html, body {
   width: 100%;
   height: 100%;
 }
+
+.building {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+@import './widgets/SelectionView/index';
+@import './widgets/Actionbar/index';
+@import './widgets/BuildPanel/index';
