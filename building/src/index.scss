@@ -36,6 +36,11 @@ html, body {
   align-content: center;
 }
 
+#cse-ui-building {
+  -webkit-user-select: none;
+  cursor: default;
+}
+
 @import './widgets/SelectionView/index';
 @import './widgets/Actionbar/index';
 @import './widgets/BuildPanel/index';
